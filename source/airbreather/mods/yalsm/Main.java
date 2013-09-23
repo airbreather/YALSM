@@ -22,19 +22,19 @@ public final class Main
     @SidedProxy(clientSide="airbreather.mods.yalsm.client.ClientProxy",
                 serverSide="airbreather.mods.yalsm.CommonProxy")
     public static CommonProxy proxy;
-				
-				private final RecipeRegistrar recipeRegistrar;
     
-				public Main()
-				{
-				    this(new YalsmRecipeRegistrar());
-				}
-				
-				public Main(final RecipeRegistrar recipeRegistrar)
-				{
-				    this.recipeRegistrar = recipeRegistrar;
-				}
-				
+    private final RecipeRegistrar recipeRegistrar;
+    
+    public Main()
+    {
+        this(new YalsmRecipeRegistrar());
+    }
+    
+    public Main(final RecipeRegistrar recipeRegistrar)
+    {
+        this.recipeRegistrar = recipeRegistrar;
+    }
+    
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
@@ -44,8 +44,8 @@ public final class Main
     public void load(FMLInitializationEvent event)
     {
         proxy.registerRenderers();
-								
-								this.recipeRegistrar.RegisterRecipes();
+        
+        this.recipeRegistrar.RegisterRecipes();
     }
     
     @EventHandler

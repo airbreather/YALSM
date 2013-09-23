@@ -9,17 +9,17 @@ final class YalsmRecipeRegistrar implements RecipeRegistrar
 {
     // register the recipes for this mod.
     public void RegisterRecipes()
-				{
-				    this.RegisterSmeltingRecipes();
-				}
-				
-				private void RegisterSmeltingRecipes()
-				{
-				    ItemStack leatherResult = new ItemStack(Item.leather);
-								int rottenFleshId = Item.rottenFlesh.itemID;
-								float leatherSmeltingExperience = 0.1f;
-								
-								// Rotten Flesh --> Leather, 0.1 experience (minimum allowed).
-								GameRegistry.addSmelting(rottenFleshId, leatherResult, leatherSmeltingExperience);
-				}
+    {
+        this.RegisterSmeltingRecipes();
+    }
+    
+    private void RegisterSmeltingRecipes()
+    {
+        ItemStack leatherResult = new ItemStack(Item.leather);
+        int rottenFleshId = Item.rottenFlesh.itemID;
+        float leatherSmeltingExperience = 0.1f;
+        
+        // Rotten Flesh --> Leather, 0.1 experience (minimum allowed).
+        GameRegistry.addSmelting(rottenFleshId, leatherResult, leatherSmeltingExperience);
+    }
 }
