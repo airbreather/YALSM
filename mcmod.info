@@ -1,0 +1,16 @@
+[
+  {
+    "modid": "YALSM",
+    "name": "Yet Another Leather Smelting Mod",
+    "description": "Adds a simple recipe to allow smelting Rotten Flesh to Leather.  It's been done before, I just haven't seen it for 1.6.4.",
+    "version": "1.0.0",
+    "credits": "Code by airbreather (AiryBreath on Minecraft Forum), idea taken from EpicBlargh's identical version for older Minecraft versions.",
+    "mcversion": "1.6.4",
+    "url": "http://www.example.com",
+    "authors": [ "airbreather" ],
+    "dependencies":
+				[
+      "mod_MinecraftForge"
+    ]
+  }
+]
