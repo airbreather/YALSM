@@ -27,4 +27,4 @@ Dependencies: JDK, JRE.
 8. When that completes, run "reobfuscate.bat" or "reobfuscate.sh".
 9. Navigate to "reobf/minecraft".
 10. Zip up everything in here and name the resulting file "yalsm-1.0.0.jar".
-11. (mostly optional) Also add the "mcmod.info" file from this repository to the root of that zip file.
+11. (mostly optional) Also add the "mcmod.info" and "forge.version" files from this repository to the root of that zip file.
