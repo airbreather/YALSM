@@ -22,8 +22,7 @@ Dependencies: JDK, JRE.
 2. Download the "src" version of Minecraft Forge from http://files.minecraftforge.net (tested with 9.11.0.883).
 3. Extract "forge" somewhere, and navigate there.
 4. Run "install.cmd" or "install.sh".
-6. From this repository, copy the contents of "source" into "mcp/src/minecraft".
-a. So there should be "mcp/src/minecraft/airbreather".
+6. From this repository, copy the contents of "source" into "mcp/src/minecraft".  Sanity check: there should be a "mcp/src/minecraft/airbreather" folder now.
 7. Back in the "forge" directory, run "recompile.bat" or "recompile.sh".
 8. When that completes, run "reobfuscate.bat" or "reobfuscate.sh".
 9. Navigate to "reobf/minecraft".
