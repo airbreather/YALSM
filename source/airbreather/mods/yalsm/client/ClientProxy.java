@@ -8,6 +8,6 @@ public final class ClientProxy extends CommonProxy
     @Override
     public void registerRenderers()
     {
-        // This is for rendering entities and so forth later on
+        // Stuff will probably go in here eventually... or maybe not?
     }
 }
