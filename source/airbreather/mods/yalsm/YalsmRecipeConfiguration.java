@@ -4,10 +4,11 @@ import java.util.List;
 import java.util.ArrayList;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import airbreather.mods.yalsm.ItemConfiguration;
-import airbreather.mods.yalsm.Recipe;
-import airbreather.mods.yalsm.SmeltingRecipe;
-import airbreather.mods.yalsm.CraftingRecipe;
+import airbreather.mods.airbreathercore.ItemConfiguration;
+import airbreather.mods.airbreathercore.recipe.CraftingRecipe;
+import airbreather.mods.airbreathercore.recipe.Recipe;
+import airbreather.mods.airbreathercore.recipe.RecipeConfiguration;
+import airbreather.mods.airbreathercore.recipe.SmeltingRecipe;
 
 // Holds recipe-related configuration information, specific to YALSM.
 final class YalsmRecipeConfiguration implements RecipeConfiguration

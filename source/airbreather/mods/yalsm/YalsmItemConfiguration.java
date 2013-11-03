@@ -4,8 +4,7 @@ import java.util.HashMap;
 import net.minecraft.item.Item;
 import net.minecraft.creativetab.CreativeTabs;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import airbreather.mods.yalsm.ItemConfiguration;
-import airbreather.mods.yalsm.YalsmConstants;
+import airbreather.mods.airbreathercore.ItemConfiguration;
 
 // Holds item-related configuration information, specific to YALSM.
 final class YalsmItemConfiguration implements ItemConfiguration

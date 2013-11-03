@@ -3,9 +3,10 @@ package airbreather.mods.yalsm;
 import java.io.File;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
-import airbreather.mods.yalsm.CustomConfiguration;
-import airbreather.mods.yalsm.YalsmItemConfiguration;
-import airbreather.mods.yalsm.YalsmRecipeConfiguration;
+import airbreather.mods.airbreathercore.CustomConfiguration;
+import airbreather.mods.airbreathercore.ItemConfiguration;
+import airbreather.mods.airbreathercore.event.EventConfiguration;
+import airbreather.mods.airbreathercore.recipe.RecipeConfiguration;
 
 // Implements CustomConfiguration using the standard Forge configuration pattern, given a File.
 final class YalsmConfigurationAdapter implements CustomConfiguration
@@ -46,6 +47,12 @@ final class YalsmConfigurationAdapter implements CustomConfiguration
     public ItemConfiguration GetItemConfiguration()
     {
         return this.itemConfiguration;
+    }
+
+    public EventConfiguration GetEventConfiguration()
+    {
+        // TODO: add a base class that implements unused configurations using empty objects so I don't have to do this.
+        return null;
     }
 
     private static int LoadPatchworkItemID(Configuration forgeConfiguration)
