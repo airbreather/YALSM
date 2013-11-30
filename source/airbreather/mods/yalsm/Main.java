@@ -4,15 +4,12 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkMod;
 import airbreather.mods.airbreathercore.CustomConfiguration;
 import airbreather.mods.airbreathercore.recipe.FmlRecipeRegistrar;
 import airbreather.mods.airbreathercore.recipe.RecipeConfiguration;
 import airbreather.mods.airbreathercore.recipe.RecipeRegistrar;
 
-// Lots of this is boilerplate from the Forge tutorial -- not sure how much I can just delete.
 @Mod(modid = YalsmConstants.ModID, name = "Yet Another Leather Smelting Mod", version = YalsmConstants.CurrentVersion)
-@NetworkMod(clientSideRequired = true)
 public final class Main
 {
     private final RecipeRegistrar recipeRegistrar;
