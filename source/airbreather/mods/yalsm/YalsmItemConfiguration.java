@@ -3,7 +3,6 @@ package airbreather.mods.yalsm;
 import java.util.HashMap;
 import net.minecraft.item.Item;
 import net.minecraft.creativetab.CreativeTabs;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import airbreather.mods.airbreathercore.ItemConfiguration;
 
 // Holds item-related configuration information, specific to YALSM.
