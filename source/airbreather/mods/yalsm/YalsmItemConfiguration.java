@@ -45,6 +45,6 @@ final class YalsmItemConfiguration implements ItemConfiguration
                                              .setCreativeTab(CreativeTabs.tabMaterials)
                                              .setTextureName(textureName);
 
-        this.itemMap.put(YalsmConstants.PatchworkID, patchworkItem);
+        this.itemMap.put(patchworkItemDefinition.GetInternalID(), patchworkItem);
     }
 }
