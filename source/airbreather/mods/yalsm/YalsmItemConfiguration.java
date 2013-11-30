@@ -3,6 +3,7 @@ package airbreather.mods.yalsm;
 import java.util.HashMap;
 import net.minecraft.item.Item;
 import net.minecraft.creativetab.CreativeTabs;
+import cpw.mods.fml.common.registry.GameRegistry;
 import airbreather.mods.airbreathercore.ItemConfiguration;
 
 // Holds item-related configuration information, specific to YALSM.
@@ -46,5 +47,10 @@ final class YalsmItemConfiguration implements ItemConfiguration
                                              .setTextureName(textureName);
 
         this.itemMap.put(patchworkItemDefinition.GetInternalID(), patchworkItem);
+
+        // TODO: this DEFINITELY should be done somewhere else.
+        GameRegistry.registerItem(patchworkItem,
+                                  patchworkItemDefinition.GetItemName(),
+                                  patchworkItemDefinition.GetModID());
     }
 }
