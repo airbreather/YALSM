@@ -13,11 +13,6 @@ final class YalsmConstants
     // NOT the actual configurable item ID, just something to use internally.
     public static final int PatchworkID = 0;
 
-    // The string that refers to the texture file for the patchwork item's icon.
-    // Ends up being "YALSM:patchwork", which translates to assets/yalsm/textures/items/patchwork.png
-    public static final String PatchworkTextureID = ModID + ":patchwork";
-
-    // The English name for the patchwork item.
-    // TODO: globalize... that's a project for another day.
-    public static final String PatchworkEnglishName = "Patchwork Flesh";
+    // The name of the patchwork item.
+    public static final String PatchworkItemName = "patchworkFlesh";
 }

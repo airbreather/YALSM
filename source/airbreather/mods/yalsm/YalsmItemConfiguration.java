@@ -23,15 +23,29 @@ final class YalsmItemConfiguration implements ItemConfiguration
             return;
         }
 
+        // TODO: after a proper refactoring with actual design in mind, we'll probably just return
+        // this ItemDefinition and let the consumer deal with wiring things up.
+        // Putting that off till later, since I have a couple of competing ideas, and I want to get
+        // a 1.7-friendly version of this out as quickly as reasonably possible.
+        ItemDefinition patchworkItemDefinition = new ItemDefinition(itemID,
+                                                                    YalsmConstants.PatchworkID,
+                                                                    YalsmConstants.ModID,
+                                                                    YalsmConstants.PatchworkItemName);
+
+        // TODO: move unlocalizedName and textureName stuff somewhere higher up
+        // so I don't have to keep writing these.
+        String unlocalizedName = patchworkItemDefinition.GetItemName();
+
+        String textureName = String.format("%s:%s",
+                                           patchworkItemDefinition.GetModID(),
+                                           patchworkItemDefinition.GetItemName());
+
         int patchworkMaxStackSize = 64;
         Item patchworkItem = new Item(itemID).setMaxStackSize(patchworkMaxStackSize)
-                                             .setUnlocalizedName(YalsmConstants.PatchworkEnglishName)
+                                             .setUnlocalizedName(unlocalizedName)
                                              .setCreativeTab(CreativeTabs.tabMaterials)
-                                             .setTextureName(YalsmConstants.PatchworkTextureID);
+                                             .setTextureName(textureName);
 
         this.itemMap.put(YalsmConstants.PatchworkID, patchworkItem);
-
-        // TODO: Globalize... that's a project for another day.
-        LanguageRegistry.addName(patchworkItem, YalsmConstants.PatchworkEnglishName);
     }
 }
