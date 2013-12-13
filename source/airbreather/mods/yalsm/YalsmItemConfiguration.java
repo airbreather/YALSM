@@ -1,19 +1,32 @@
 package airbreather.mods.yalsm;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import net.minecraft.item.Item;
 import net.minecraft.creativetab.CreativeTabs;
-import cpw.mods.fml.common.registry.GameRegistry;
-import airbreather.mods.airbreathercore.ItemConfiguration;
+import net.minecraft.item.Item;
+import airbreather.mods.airbreathercore.item.ItemConfiguration;
+import airbreather.mods.airbreathercore.item.ItemDefinition;
 
 // Holds item-related configuration information, specific to YALSM.
 final class YalsmItemConfiguration implements ItemConfiguration
 {
-    private final HashMap<Integer, Item> itemMap = new HashMap<Integer, Item>(1);
+    private final HashMap<Integer, ItemDefinition> itemMap = new HashMap<Integer, ItemDefinition>(3);
 
-    public Item GetItem(int id)
+    public YalsmItemConfiguration()
     {
-        return this.itemMap.get(id);
+        this.InitializeItemDefinitionsForNonYalsmItems();
+    }
+
+    public ItemDefinition GetItemDefinition(int tag)
+    {
+        return this.itemMap.get(tag);
+    }
+
+    public Iterable<Integer> GetNewItemTags()
+    {
+        ArrayList<Integer> itemTags = new ArrayList<Integer>(1);
+        itemTags.add(YalsmConstants.PatchworkID);
+        return itemTags;
     }
 
     public void SetPatchworkItemID(int itemID)
@@ -23,34 +36,31 @@ final class YalsmItemConfiguration implements ItemConfiguration
             return;
         }
 
-        // TODO: after a proper refactoring with actual design in mind, we'll probably just return
-        // this ItemDefinition and let the consumer deal with wiring things up.
-        // Putting that off till later, since I have a couple of competing ideas, and I want to get
-        // a 1.7-friendly version of this out as quickly as reasonably possible.
-        ItemDefinition patchworkItemDefinition = new ItemDefinition(itemID,
-                                                                    YalsmConstants.PatchworkID,
+        ItemDefinition patchworkItemDefinition = new ItemDefinition(YalsmConstants.PatchworkID,
+                                                                    itemID,
                                                                     YalsmConstants.ModID,
                                                                     YalsmConstants.PatchworkItemName);
 
-        // TODO: move unlocalizedName and textureName stuff somewhere higher up
-        // so I don't have to keep writing these.
-        String unlocalizedName = patchworkItemDefinition.GetItemName();
+        this.itemMap.put(patchworkItemDefinition.GetTag(), patchworkItemDefinition);
+    }
 
-        String textureName = String.format("%s:%s",
-                                           patchworkItemDefinition.GetModID(),
-                                           patchworkItemDefinition.GetItemName());
+    private void InitializeItemDefinitionsForNonYalsmItems()
+    {
+        // This lets us plug non-YALSM items into our recipe framework.
+        // Note: having to do this is a deliberate consequence to designing the item framework this way.
+        // It means that somewhere, at some point, we have to be explicit about all the items we're using.
+        int rottenFleshItemID = Item.rottenFlesh.itemID;
+        ItemDefinition rottenFleshItemDefinition = new ItemDefinition(YalsmConstants.RottenFleshID,
+                                                                      rottenFleshItemID,
+                                                                      YalsmConstants.BaseGameModID,
+                                                                      YalsmConstants.RottenFleshItemName);
+        this.itemMap.put(rottenFleshItemDefinition.GetTag(), rottenFleshItemDefinition);
 
-        int patchworkMaxStackSize = 64;
-        Item patchworkItem = new Item(itemID).setMaxStackSize(patchworkMaxStackSize)
-                                             .setUnlocalizedName(unlocalizedName)
-                                             .setCreativeTab(CreativeTabs.tabMaterials)
-                                             .setTextureName(textureName);
-
-        this.itemMap.put(patchworkItemDefinition.GetInternalID(), patchworkItem);
-
-        // TODO: this DEFINITELY should be done somewhere else.
-        GameRegistry.registerItem(patchworkItem,
-                                  patchworkItemDefinition.GetItemName(),
-                                  patchworkItemDefinition.GetModID());
+        int leatherItemID = Item.leather.itemID;
+        ItemDefinition leatherItemDefinition = new ItemDefinition(YalsmConstants.LeatherID,
+                                                                  leatherItemID,
+                                                                  YalsmConstants.BaseGameModID,
+                                                                  YalsmConstants.LeatherItemName);
+        this.itemMap.put(leatherItemDefinition.GetTag(), leatherItemDefinition);
     }
 }

@@ -3,17 +3,18 @@ package airbreather.mods.yalsm;
 import java.io.File;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
-import airbreather.mods.airbreathercore.CustomConfiguration;
-import airbreather.mods.airbreathercore.ItemConfiguration;
+import airbreather.mods.airbreathercore.CustomConfigurationBase;
+import airbreather.mods.airbreathercore.item.ItemConfiguration;
 import airbreather.mods.airbreathercore.event.EventConfiguration;
 import airbreather.mods.airbreathercore.recipe.RecipeConfiguration;
 
 // Implements CustomConfiguration using the standard Forge configuration pattern, given a File.
-final class YalsmConfigurationAdapter implements CustomConfiguration
+final class YalsmConfigurationAdapter extends CustomConfigurationBase
 {
     private final YalsmItemConfiguration itemConfiguration = new YalsmItemConfiguration();
     private final YalsmRecipeConfiguration recipeConfiguration = new YalsmRecipeConfiguration(this.itemConfiguration);
 
+    @Override
     public void Initialize(File configurationFile)
     {
         Configuration forgeConfiguration = new Configuration(configurationFile);
@@ -39,20 +40,16 @@ final class YalsmConfigurationAdapter implements CustomConfiguration
         forgeConfiguration.save();
     }
 
+    @Override
     public RecipeConfiguration GetRecipeConfiguration()
     {
         return this.recipeConfiguration;
     }
 
+    @Override
     public ItemConfiguration GetItemConfiguration()
     {
         return this.itemConfiguration;
-    }
-
-    public EventConfiguration GetEventConfiguration()
-    {
-        // TODO: add a base class that implements unused configurations using empty objects so I don't have to do this.
-        return null;
     }
 
     private static int LoadPatchworkItemID(Configuration forgeConfiguration)
