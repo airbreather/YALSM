@@ -29,4 +29,4 @@ Every time
 ----------
 1. Navigate to the YALSM source tree.
 2. Run "gradle build".
-3. The result will be in the "build\lib".
+3. The result will be in the "build\libs".
