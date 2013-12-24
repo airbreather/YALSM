@@ -24,12 +24,10 @@ final class YalsmItemRegistrar extends ItemRegistrarBase
 
     private static Item CreatePatchworkItem(ItemDefinition patchworkItemDefinition)
     {
-        int itemID = patchworkItemDefinition.GetItemID();
-
         // The registry itself is expected to set the common properties derived from the ModID and/or item name.
         int patchworkMaxStackSize = 64;
-        Item patchworkItem = new Item(itemID).setMaxStackSize(patchworkMaxStackSize)
-                                             .setCreativeTab(CreativeTabs.tabMaterials);
+        Item patchworkItem = new Item().setMaxStackSize(patchworkMaxStackSize)
+                                       .setCreativeTab(CreativeTabs.tabMaterials);
 
         return patchworkItem;
     }

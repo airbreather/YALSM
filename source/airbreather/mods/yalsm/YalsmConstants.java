@@ -7,7 +7,7 @@ final class YalsmConstants
     public static final String ModID = "YALSM";
 
     // ID of the base game.
-    public static final String BaseGameModID = "Minecraft";
+    public static final String BaseGameModID = "minecraft";
 
     // Current version of the mod.
     public static final String CurrentVersion = "2.0.3";
@@ -28,7 +28,7 @@ final class YalsmConstants
     public static final String PatchworkItemName = "patchworkFlesh";
 
     // The name of the rotten flesh item.
-    public static final String RottenFleshItemName = "rottenFlesh";
+    public static final String RottenFleshItemName = "rotten_flesh";
 
     // The name of the leather item.
     public static final String LeatherItemName = "leather";

@@ -15,6 +15,7 @@ final class YalsmItemConfiguration implements ItemConfiguration
     public YalsmItemConfiguration()
     {
         this.InitializeItemDefinitionsForNonYalsmItems();
+        this.RegisterPatchworkItem();
     }
 
     public ItemDefinition GetItemDefinition(int tag)
@@ -29,7 +30,7 @@ final class YalsmItemConfiguration implements ItemConfiguration
         return itemTags;
     }
 
-    public void SetPatchworkItemID(int itemID)
+    private void RegisterPatchworkItem()
     {
         if (this.itemMap.containsKey(YalsmConstants.PatchworkID))
         {
@@ -37,7 +38,6 @@ final class YalsmItemConfiguration implements ItemConfiguration
         }
 
         ItemDefinition patchworkItemDefinition = new ItemDefinition(YalsmConstants.PatchworkID,
-                                                                    itemID,
                                                                     YalsmConstants.ModID,
                                                                     YalsmConstants.PatchworkItemName);
 
@@ -49,16 +49,12 @@ final class YalsmItemConfiguration implements ItemConfiguration
         // This lets us plug non-YALSM items into our recipe framework.
         // Note: having to do this is a deliberate consequence to designing the item framework this way.
         // It means that somewhere, at some point, we have to be explicit about all the items we're using.
-        int rottenFleshItemID = Item.rottenFlesh.itemID;
         ItemDefinition rottenFleshItemDefinition = new ItemDefinition(YalsmConstants.RottenFleshID,
-                                                                      rottenFleshItemID,
                                                                       YalsmConstants.BaseGameModID,
                                                                       YalsmConstants.RottenFleshItemName);
         this.itemMap.put(rottenFleshItemDefinition.GetTag(), rottenFleshItemDefinition);
 
-        int leatherItemID = Item.leather.itemID;
         ItemDefinition leatherItemDefinition = new ItemDefinition(YalsmConstants.LeatherID,
-                                                                  leatherItemID,
                                                                   YalsmConstants.BaseGameModID,
                                                                   YalsmConstants.LeatherItemName);
         this.itemMap.put(leatherItemDefinition.GetTag(), leatherItemDefinition);

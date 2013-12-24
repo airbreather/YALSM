@@ -1,8 +1,8 @@
 package airbreather.mods.yalsm;
 
 import java.io.File;
-import net.minecraftforge.common.Configuration;
-import net.minecraftforge.common.Property;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 import airbreather.mods.airbreathercore.CustomConfigurationBase;
 import airbreather.mods.airbreathercore.item.ItemConfiguration;
 import airbreather.mods.airbreathercore.event.EventConfiguration;
@@ -19,11 +19,6 @@ final class YalsmConfigurationAdapter extends CustomConfigurationBase
     {
         Configuration forgeConfiguration = new Configuration(configurationFile);
         forgeConfiguration.load();
-
-        // Even if the patchwork recipe is off, we still want to load the patchwork item,
-        // otherwise all your patchwork would go away if you load a world that used to have it on!
-        int patchworkItemID = LoadPatchworkItemID(forgeConfiguration);
-        this.itemConfiguration.SetPatchworkItemID(patchworkItemID);
 
         if (ShouldEnableSimpleRecipe(forgeConfiguration))
         {
@@ -50,20 +45,6 @@ final class YalsmConfigurationAdapter extends CustomConfigurationBase
     public ItemConfiguration GetItemConfiguration()
     {
         return this.itemConfiguration;
-    }
-
-    private static int LoadPatchworkItemID(Configuration forgeConfiguration)
-    {
-        // Parameters for the patchwork item & configuration.
-        String patchworkIDPropertyName = "patchworkFleshID";
-        int patchworkDefaultID = 9753;
-        String patchworkIDComment = "The ID for Patchwork Flesh.  " + patchworkDefaultID + " is the default";
-
-        // Fetch the configured patchwork item ID.
-        Property patchworkProperty = forgeConfiguration.getItem(patchworkIDPropertyName, patchworkDefaultID, patchworkIDComment);
-        int patchworkID = patchworkProperty.getInt();
-
-        return patchworkID;
     }
 
     private static boolean ShouldEnableSimpleRecipe(Configuration forgeConfiguration)
