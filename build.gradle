@@ -6,10 +6,14 @@ buildscript {
             name = "forge"
             url = "http://files.minecraftforge.net/maven"
         }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
     }
     dependencies
     {
-        classpath "net.minecraftforge.gradle:ForgeGradle:1.0-SNAPSHOT"
+        classpath "net.minecraftforge.gradle:ForgeGradle:1.1-SNAPSHOT"
     }
 }
 
@@ -25,5 +29,5 @@ sourceSets
 }
 
 archivesBaseName = "yalsm"
-version = "2.0.3"
-minecraft.version = "1.6.4-9.11.1.964"
+version = "2.1.0"
+minecraft.version = "1.7.2-10.12.0.968"
