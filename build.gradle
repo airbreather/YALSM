@@ -29,5 +29,5 @@ sourceSets
 }
 
 archivesBaseName = "yalsm"
-version = "2.1.0"
-minecraft.version = "1.7.2-10.12.0.971"
+version = "2.1.1"
+minecraft.version = "1.7.2-10.12.0.972"
