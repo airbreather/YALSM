@@ -2,9 +2,9 @@
   {
     "modid": "YALSM",
     "name": "Yet Another Leather Smelting Mod",
-    "description": "Adds recipes to allow smelting Rotten Flesh to Leather.  It's been done before, I just haven't seen it for 1.6.4.  Idea taken from EpicBlargh's Rotten Flesh to Leather mod.  Patchwork Flesh icon by skidznet.",
-    "version": "2.0.3",
-    "mcversion": "1.6.4",
+    "description": "Adds recipes to allow smelting Rotten Flesh to Leather.  It's been done before, but never updated enough for me.  Idea taken from EpicBlargh's Rotten Flesh to Leather mod.  Patchwork Flesh icon by skidznet.",
+    "version": "2.1.0",
+    "mcversion": "1.7.2",
     "url": "https://github.com/airbreather/YALSM",
     "authors": [ "airbreather", "skidznet" ],
     "dependencies":

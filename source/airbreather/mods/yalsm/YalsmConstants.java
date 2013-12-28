@@ -10,7 +10,7 @@ final class YalsmConstants
     public static final String BaseGameModID = "minecraft";
 
     // Current version of the mod.
-    public static final String CurrentVersion = "2.0.3";
+    public static final String CurrentVersion = "2.1.0";
 
     // An ID that refers to the patchwork item.
     // NOT the actual configurable item ID, just something to use internally.
