@@ -1,57 +1,51 @@
 package airbreather.mods.yalsm;
 
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-////import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import airbreather.mods.airbreathercore.CustomConfiguration;
-import airbreather.mods.airbreathercore.item.FmlItemRegistry;
-import airbreather.mods.airbreathercore.item.ItemConfiguration;
-import airbreather.mods.airbreathercore.item.ItemRegistry;
-import airbreather.mods.airbreathercore.item.ItemRegistrar;
-import airbreather.mods.airbreathercore.recipe.FmlRecipeRegistrar;
-import airbreather.mods.airbreathercore.recipe.RecipeConfiguration;
-import airbreather.mods.airbreathercore.recipe.RecipeRegistrar;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = YalsmConstants.ModID, name = "Yet Another Leather Smelting Mod", version = YalsmConstants.CurrentVersion)
-public final class Main
+import airbreather.mods.airbreathercore.mod.IModLifecycleManager;
+import airbreather.mods.airbreathercore.mod.IModule;
+import airbreather.mods.airbreathercore.mod.ModLifecycleManager;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+
+@Mod(modid = YalsmConstants.ModID, name = YalsmConstants.ModName, version = YalsmConstants.CurrentVersion)
+public final class YalsmMod
 {
-    private final ItemRegistry itemRegistry;
-    private final ItemRegistrar itemRegistrar;
-    private final RecipeRegistrar recipeRegistrar;
-    private final CustomConfiguration configuration;
+    private final IModLifecycleManager modLifecycleManager;
 
-    public Main()
+    public YalsmMod(final IModLifecycleManager modLifecycleManager)
     {
-        this(new FmlItemRegistry(),
-             new YalsmItemRegistrar(),
-             new FmlRecipeRegistrar(),
-             new YalsmConfigurationAdapter());
+        this.modLifecycleManager = checkNotNull(modLifecycleManager, "modLifecycleManager");
     }
 
-    public Main(final ItemRegistry itemRegistry, final ItemRegistrar itemRegistrar, final RecipeRegistrar recipeRegistrar, final CustomConfiguration configuration)
+    // Either a parameterless constructor or a parameterless static factory
+    // method is required for FML to load us.
+    @Mod.InstanceFactory
+    private static YalsmMod CreateInstance()
     {
-        this.itemRegistry = itemRegistry;
-        this.itemRegistrar = itemRegistrar;
-        this.recipeRegistrar = recipeRegistrar;
-        this.configuration = configuration;
+        IModule module = new YalsmModule();
+        IModLifecycleManager modLifecycleManager = new ModLifecycleManager(module);
+        return new YalsmMod(modLifecycleManager);
     }
 
-    @EventHandler
-    public void preInit(FMLPreInitializationEvent event)
+    @Mod.EventHandler
+    private void PreInit(FMLPreInitializationEvent event)
     {
-        this.configuration.Initialize(event.getSuggestedConfigurationFile());
-
-        ItemConfiguration itemConfiguration = this.configuration.GetItemConfiguration();
-        this.itemRegistrar.RegisterNewItems(itemConfiguration, this.itemRegistry);
+        this.modLifecycleManager.OnPreInit(event);
     }
 
-    @EventHandler
-    public void postInit(FMLPostInitializationEvent event)
+    @Mod.EventHandler
+    private void Init(FMLInitializationEvent event)
     {
-        // This MUST be called during post-initialization, or else FmlItemRegistry won't have any items yet.
-        RecipeConfiguration recipeConfiguration = this.configuration.GetRecipeConfiguration();
-        this.recipeRegistrar.RegisterRecipes(recipeConfiguration, this.itemRegistry);
+        this.modLifecycleManager.OnInit(event);
+    }
+
+    @Mod.EventHandler
+    private void PostInit(FMLPostInitializationEvent event)
+    {
+        this.modLifecycleManager.OnPostInit(event);
     }
 }

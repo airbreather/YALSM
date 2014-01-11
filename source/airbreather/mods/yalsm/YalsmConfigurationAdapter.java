@@ -1,18 +1,26 @@
 package airbreather.mods.yalsm;
 
 import java.io.File;
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import airbreather.mods.airbreathercore.CustomConfigurationBase;
 import airbreather.mods.airbreathercore.item.ItemConfiguration;
-import airbreather.mods.airbreathercore.event.EventConfiguration;
 import airbreather.mods.airbreathercore.recipe.RecipeConfiguration;
 
 // Implements CustomConfiguration using the standard Forge configuration pattern, given a File.
 final class YalsmConfigurationAdapter extends CustomConfigurationBase
 {
-    private final YalsmItemConfiguration itemConfiguration = new YalsmItemConfiguration();
-    private final YalsmRecipeConfiguration recipeConfiguration = new YalsmRecipeConfiguration(this.itemConfiguration);
+    private final YalsmItemConfiguration itemConfiguration;
+    private final YalsmRecipeConfiguration recipeConfiguration;
+
+    public YalsmConfigurationAdapter(YalsmItemConfiguration itemConfiguration,
+                                     YalsmRecipeConfiguration recipeConfiguration)
+    {
+        this.itemConfiguration = checkNotNull(itemConfiguration, "itemConfiguration");
+        this.recipeConfiguration = checkNotNull(recipeConfiguration, "recipeConfiguration");
+    }
 
     @Override
     public void Initialize(File configurationFile)
@@ -49,9 +57,9 @@ final class YalsmConfigurationAdapter extends CustomConfigurationBase
 
     private static boolean ShouldEnableSimpleRecipe(Configuration forgeConfiguration)
     {
-        boolean enableSimpleRecipeDefault = false;
-        String enableSimpleRecipeName = "enableSimpleRecipe";
-        String enableSimpleRecipeComment = "Enable the Rotten Flesh --> Leather smelting recipe?  true/false (false is the default)";
+        final boolean enableSimpleRecipeDefault = false;
+        final String enableSimpleRecipeName = "enableSimpleRecipe";
+        final String enableSimpleRecipeComment = "Enable the Rotten Flesh --> Leather smelting recipe?  true/false (false is the default)";
 
         Property enableSimpleRecipeProperty = forgeConfiguration.get(Configuration.CATEGORY_GENERAL, enableSimpleRecipeName, enableSimpleRecipeDefault, enableSimpleRecipeComment);
         return enableSimpleRecipeProperty.getBoolean(enableSimpleRecipeDefault);

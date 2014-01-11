@@ -1,3 +1,5 @@
+defaultTasks 'build'
+
 buildscript {
     repositories
     {

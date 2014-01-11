@@ -1,7 +1,7 @@
 package airbreather.mods.yalsm;
 
-import java.util.ArrayList;
-import airbreather.mods.airbreathercore.item.ItemConfiguration;
+import com.google.common.collect.ImmutableList;
+
 import airbreather.mods.airbreathercore.item.ItemDefinition;
 import airbreather.mods.airbreathercore.recipe.ShapedCraftingRecipe;
 import airbreather.mods.airbreathercore.recipe.Recipe;
@@ -15,13 +15,6 @@ final class YalsmRecipeConfiguration implements RecipeConfiguration
     private boolean enableSimpleRecipe = false;
     private boolean enablePatchworkRecipes = false;
 
-    private ItemConfiguration itemConfiguration;
-
-    public YalsmRecipeConfiguration(ItemConfiguration itemConfiguration)
-    {
-        this.itemConfiguration = itemConfiguration;
-    }
-
     public void EnableSimpleSmeltingRecipe()
     {
         this.enableSimpleRecipe = true;
@@ -34,11 +27,11 @@ final class YalsmRecipeConfiguration implements RecipeConfiguration
 
     public Iterable<Recipe> GetRecipes()
     {
-        ArrayList<Recipe> results = new ArrayList<Recipe>(3);
+        ImmutableList.Builder<Recipe> resultBuilder = ImmutableList.builder();
 
-        ItemDefinition rottenFlesh = this.itemConfiguration.GetItemDefinition(YalsmConstants.RottenFleshID);
-        ItemDefinition leather = this.itemConfiguration.GetItemDefinition(YalsmConstants.LeatherID);
-        ItemDefinition patchwork = this.itemConfiguration.GetItemDefinition(YalsmConstants.PatchworkID);
+        ItemDefinition rottenFlesh = YalsmConstants.RottenFleshItemDefinition;
+        ItemDefinition leather = YalsmConstants.LeatherItemDefinition;
+        ItemDefinition patchwork = YalsmConstants.PatchworkItemDefinition;
 
         RecipeResult patchworkResult = new RecipeResult(patchwork);
         RecipeResult leatherResult = new RecipeResult(leather);
@@ -49,7 +42,7 @@ final class YalsmRecipeConfiguration implements RecipeConfiguration
             // (0.1 experience, same as Cobblestone --> Stone)
             float simpleSmeltingExperience = 0.1f;
             Recipe simpleRecipe = new SmeltingRecipe(leatherResult, rottenFlesh, simpleSmeltingExperience);
-            results.add(simpleRecipe);
+            resultBuilder.add(simpleRecipe);
         }
 
         if (this.enablePatchworkRecipes)
@@ -63,16 +56,15 @@ final class YalsmRecipeConfiguration implements RecipeConfiguration
                                                                       " # ",
                                                                       "# #",
                                                                       '#', rottenFlesh);
-            results.add(patchworkCraftingRecipe);
+            resultBuilder.add(patchworkCraftingRecipe);
 
             // Smelt Patchwork --> Leather
             // (0.35 experience, same as Raw Beef --> Steak)
             float patchworkSmeltingExperience = 0.35f;
             Recipe patchworkSmeltingRecipe = new SmeltingRecipe(leatherResult, patchwork, patchworkSmeltingExperience);
-            results.add(patchworkSmeltingRecipe);
+            resultBuilder.add(patchworkSmeltingRecipe);
         }
 
-        results.trimToSize();
-        return results;
+        return resultBuilder.build();
     }
 }

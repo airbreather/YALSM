@@ -1,5 +1,7 @@
 package airbreather.mods.yalsm;
 
+import airbreather.mods.airbreathercore.item.ItemDefinition;
+
 // Some constants used throughout the mod.
 final class YalsmConstants
 {
@@ -12,32 +14,15 @@ final class YalsmConstants
     // Current version of the mod.
     public static final String CurrentVersion = "2.1.1";
 
-    // An ID that refers to the patchwork item.
-    // NOT the actual configurable item ID, just something to use internally.
-    public static final int PatchworkID;
+    // Name of the mod.
+    public static final String ModName = "Yet Another Leather Smelting Mod";
 
-    // An ID that refers to the rotten flesh item.
-    // NOT the actual item ID, just something to use internally.
-    public static final int RottenFleshID;
+    // Refers to the rotten flesh item in the base game.
+    public static final ItemDefinition RottenFleshItemDefinition = new ItemDefinition(BaseGameModID, "rotten_flesh");
 
-    // An ID that refers to the leather item.
-    // NOT the actual item ID, just something to use internally.
-    public static final int LeatherID;
+    // Refers to the leather item in the base game.
+    public static final ItemDefinition LeatherItemDefinition = new ItemDefinition(BaseGameModID, "leather");
 
-    // The name of the patchwork item.
-    public static final String PatchworkItemName = "patchworkFlesh";
-
-    // The name of the rotten flesh item.
-    public static final String RottenFleshItemName = "rotten_flesh";
-
-    // The name of the leather item.
-    public static final String LeatherItemName = "leather";
-
-    static
-    {
-        int x = 0;
-        PatchworkID = x++;
-        RottenFleshID = x++;
-        LeatherID = x++;
-    }
+    // Refers to the patchwork item added by this mod.
+    public static final ItemDefinition PatchworkItemDefinition = new ItemDefinition(ModID, "patchworkFlesh");
 }

@@ -1,11 +1,12 @@
 package airbreather.mods.yalsm;
 
-import net.minecraft.item.Item;
 import net.minecraft.creativetab.CreativeTabs;
-import airbreather.mods.airbreathercore.item.ItemConfiguration;
+import net.minecraft.item.Item;
+
 import airbreather.mods.airbreathercore.item.ItemDefinition;
 import airbreather.mods.airbreathercore.item.ItemRegistrarBase;
-import airbreather.mods.airbreathercore.item.ItemRegistry;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 // A helper class to register all the items added by this mod.
 final class YalsmItemRegistrar extends ItemRegistrarBase
@@ -13,8 +14,9 @@ final class YalsmItemRegistrar extends ItemRegistrarBase
     @Override
     public Item CreateItemCore(ItemDefinition definition)
     {
-        int tag = definition.GetTag();
-        if (tag == YalsmConstants.PatchworkID)
+        checkNotNull(definition, "definition");
+
+        if (definition.equals(YalsmConstants.PatchworkItemDefinition))
         {
             return CreatePatchworkItem(definition);
         }
