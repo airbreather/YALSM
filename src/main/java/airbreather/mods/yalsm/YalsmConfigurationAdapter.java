@@ -33,10 +33,9 @@ final class YalsmConfigurationAdapter extends CustomConfigurationBase
             this.recipeConfiguration.EnableSimpleSmeltingRecipe();
         }
 
-        if (ShouldEnablePatchworkRecipes(forgeConfiguration))
+        if (ShouldEnablePatchworkCraftingRecipe(forgeConfiguration))
         {
-            // Need to call this AFTER setting the item in the ItemConfiguration.
-            this.recipeConfiguration.EnablePatchworkRecipes();
+            this.recipeConfiguration.EnablePatchworkCraftingRecipe();
         }
 
         // TODO: Skip saving if we aren't in "create-initial" mode.
@@ -65,15 +64,15 @@ final class YalsmConfigurationAdapter extends CustomConfigurationBase
         return enableSimpleRecipeProperty.getBoolean(enableSimpleRecipeDefault);
     }
 
-    private static boolean ShouldEnablePatchworkRecipes(Configuration forgeConfiguration)
+    private static boolean ShouldEnablePatchworkCraftingRecipe(Configuration forgeConfiguration)
     {
         // Not really any point in making this configurable,
         // especially considering that we should register the item anyway.
-        ////String enablePatchworkRecipePropertyName = "enablePatchworkRecipes";
+        ////String enablePatchworkRecipePropertyName = "enablePatchworkCraftingRecipe";
         ////boolean enablePatchworkRecipeDefault = true;
-        ////String enablePatchworkRecipeComment = "Enable the Patchwork Flesh crafting recipe and the Patchwork Flesh --> Leather smelting recipe?  true/false (true is the default)" +
+        ////String enablePatchworkRecipeComment = "Enable the Patchwork Flesh crafting recipe?  true/false (true is the default)" +
         ////                                      Configuration.NEW_LINE +
-        ////                                      "Patchwork Flesh is crafted by 5 Rotten Flesh in an X pattern.";
+        ////                                      "Patchwork Flesh is crafted by 5 Rotten Flesh in an X pattern, and can be smelted into Leather.";
         ////
         ////Property enablePatchworkRecipeProperty = forgeConfiguration.get(Configuration.CATEGORY_GENERAL, enablePatchworkRecipePropertyName, enablePatchworkRecipeDefault, enablePatchworkRecipeComment);
         ////return enablePatchworkRecipeProperty.getBoolean(enablePatchworkRecipeDefault);

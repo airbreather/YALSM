@@ -13,16 +13,16 @@ import airbreather.mods.airbreathercore.recipe.SmeltingRecipe;
 final class YalsmRecipeConfiguration implements RecipeConfiguration
 {
     private boolean enableSimpleRecipe = false;
-    private boolean enablePatchworkRecipes = false;
+    private boolean enablePatchworkCraftingRecipe = false;
 
     public void EnableSimpleSmeltingRecipe()
     {
         this.enableSimpleRecipe = true;
     }
 
-    public void EnablePatchworkRecipes()
+    public void EnablePatchworkCraftingRecipe()
     {
-        this.enablePatchworkRecipes = true;
+        this.enablePatchworkCraftingRecipe = true;
     }
 
     public Iterable<Recipe> GetRecipes()
@@ -45,7 +45,7 @@ final class YalsmRecipeConfiguration implements RecipeConfiguration
             resultBuilder.add(simpleRecipe);
         }
 
-        if (this.enablePatchworkRecipes)
+        if (this.enablePatchworkCraftingRecipe)
         {
             // Craft 5x Rotten Flesh --> 1x Patchwork
             // # . #
@@ -57,13 +57,14 @@ final class YalsmRecipeConfiguration implements RecipeConfiguration
                                                                       "# #",
                                                                       '#', rottenFlesh);
             resultBuilder.add(patchworkCraftingRecipe);
-
-            // Smelt Patchwork --> Leather
-            // (0.35 experience, same as Raw Beef --> Steak)
-            float patchworkSmeltingExperience = 0.35f;
-            Recipe patchworkSmeltingRecipe = new SmeltingRecipe(leatherResult, patchwork, patchworkSmeltingExperience);
-            resultBuilder.add(patchworkSmeltingRecipe);
         }
+
+        // Smelt Patchwork --> Leather
+        // (0.35 experience, same as Raw Beef --> Steak)
+        // If you have Patchwork, then you can smelt it, even if you can't create it anymore.
+        float patchworkSmeltingExperience = 0.35f;
+        Recipe patchworkSmeltingRecipe = new SmeltingRecipe(leatherResult, patchwork, patchworkSmeltingExperience);
+        resultBuilder.add(patchworkSmeltingRecipe);
 
         return resultBuilder.build();
     }
