@@ -4,7 +4,7 @@ Yet Another Leather Smelting Mod for Minecraft.
 Adds a simple recipe to allow smelting Rotten Flesh to Leather.
 It's been done before, but never updated enough for me.
 
-Tested with Minecraft Forge version 10.12.0.1024.
+Tested with Minecraft Forge version 10.12.1.1060.
 
 Idea from EpicBlargh's "Rotten Flesh to Leather" mod:
 http://www.minecraftforum.net/topic/1487712-151162-rotten-flesh-to-leather-hardcore-version-is-up-to-date
