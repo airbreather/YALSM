@@ -21,7 +21,6 @@ buildscript
 apply plugin: 'net.minecraftforge.gradle.forge'
 
 group = 'airbreather.mods.airbreathercore'
-minecraft.mappings = 'snapshot_20151122'
 
 // define the properties file
 ext.configFile = file 'abc.properties'
