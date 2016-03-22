@@ -35,9 +35,9 @@ archivesBaseName = 'yalsm'
 version = config.mod_version
 group = 'airbreather.mods.yalsm'
 
-minecraft.version = config.minecraft_version + '-' + config.forge_version
+minecraft.version = config.minecraft_version + '-' + config.forge_version + '-' + config.minecraft_version
 minecraft.runDir = 'eclipse'
-minecraft.mappings = 'stable_20'
+minecraft.mappings = 'snapshot_20160321'
 minecraft.makeObfSourceJar = false
 
 processResources
