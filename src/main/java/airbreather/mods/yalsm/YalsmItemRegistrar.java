@@ -29,7 +29,7 @@ final class YalsmItemRegistrar extends ItemRegistrarBase
         // The registry itself is expected to set the common properties derived from the ModID and/or item name.
         int patchworkMaxStackSize = 64;
         Item patchworkItem = new Item().setMaxStackSize(patchworkMaxStackSize)
-                                       .setCreativeTab(CreativeTabs.tabMaterials);
+                                       .setCreativeTab(CreativeTabs.MATERIALS);
 
         return patchworkItem;
     }
